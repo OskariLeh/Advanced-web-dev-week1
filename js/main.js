@@ -14,7 +14,7 @@ const createWikiItem = async (name) => {
     wikiContent.classList.add("container")
     
     let wikiText = document.createElement("p")
-    wikiText.innerText = "Some description of breed"
+    wikiText.innerText = await getDescription(name)
     wikiText.classList.add("wiki-text")
 
     let imageContainer = document.createElement("div")
@@ -40,6 +40,16 @@ const getPicture = async (breed) => {
     console.log(data)
 
     return data.message
+}
+
+const getDescription = async (breed) => {
+    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${breed}`
+    const res = await fetch(url)
+    const data = await res.json()
+
+    console.log(data.extract)
+
+    return data.extract
 }
 
 createWikiItem("Corgi")
