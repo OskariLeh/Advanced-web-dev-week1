@@ -32,7 +32,7 @@ body {
         max-width: 50%;
     }
 
-    div.container{
+    .container{
         max-width: 960px;
         margin: 0 auto;
     }

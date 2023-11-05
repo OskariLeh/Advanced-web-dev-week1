@@ -1,9 +1,13 @@
 documentBody = document.querySelector("body")
+let container = document.createElement("div")
+container.classList.add("container")
+documentBody.appendChild(container)
 
 const createWikiItem = async (name) => {
+    
+
     let wikiItem = document.createElement("div")
     wikiItem.classList.add("wiki-item")
-    wikiItem.classList.add("container")
 
     let wikiHeader = document.createElement("h1")
     wikiHeader.innerText = name
@@ -11,7 +15,6 @@ const createWikiItem = async (name) => {
     
     let wikiContent = document.createElement("div")
     wikiContent.classList.add("wiki-content")
-    wikiContent.classList.add("container")
     
     let wikiText = document.createElement("p")
     wikiText.innerText = await getDescription(name)
@@ -19,7 +22,6 @@ const createWikiItem = async (name) => {
 
     let imageContainer = document.createElement("div")
     imageContainer.classList.add("img-container")
-    imageContainer.classList.add("container")
     let image = document.createElement("img")
     image.classList.add("wiki-img")
     image.src = await getPicture(name.toLowerCase())
@@ -29,7 +31,7 @@ const createWikiItem = async (name) => {
     wikiContent.appendChild(imageContainer)
     wikiContent.appendChild(wikiText)
     wikiItem.appendChild(wikiContent)
-    documentBody.appendChild(wikiItem)
+    container.appendChild(wikiItem)
 }
 
 const getPicture = async (breed) => {
